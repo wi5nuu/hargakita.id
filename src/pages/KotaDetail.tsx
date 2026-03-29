@@ -19,11 +19,9 @@ import {
   TrendingDown,
   Minus,
   Building2,
-  Share2,
-  Navigation
+  Share2
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { getKotaById, komoditasList, generateTrenData } from '@/data';
 

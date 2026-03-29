@@ -11,7 +11,6 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useLaporanWarga } from '@/hooks/useHarga';
-import { formatDistanceToNow } from '@/lib/utils';
 
 function formatRupiah(harga: number): string {
   return new Intl.NumberFormat('id-ID', {

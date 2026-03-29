@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ArrowLeft, Newspaper, Calendar, User, Tag } from 'lucide-react';
+import { ArrowLeft, Newspaper, Calendar, User } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { beritaList } from '@/data';

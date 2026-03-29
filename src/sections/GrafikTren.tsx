@@ -14,8 +14,6 @@ import { Line } from 'react-chartjs-2';
 import { TrendingUp, Calendar } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Skeleton } from '@/components/ui/skeleton';
-import { useTrenHarga } from '@/hooks/useHarga';
 import { komoditasList } from '@/data';
 
 ChartJS.register(
