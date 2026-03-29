@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#16a34a" />
+    
+    <!-- Primary Meta Tags -->
+    <title>HargaKita.id - Platform Pemantau Harga Bahan Pokok Indonesia</title>
+    <meta name="title" content="HargaKita.id - Platform Pemantau Harga Bahan Pokok Indonesia" />
+    <meta name="description" content="Cek harga sembako hari ini di kotamu secara real-time. Data dari 500+ pasar di seluruh Indonesia. Gratis, cepat, dan terpercaya." />
+    <meta name="keywords" content="harga beras hari ini, harga sembako, harga bahan pokok, harga pasar, harga cabai, harga minyak goreng, harga telur, Indonesia" />
+    <meta name="author" content="HargaKita.id" />
+    <meta name="robots" content="index, follow" />
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://hargakita.id/" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://hargakita.id/" />
+    <meta property="og:title" content="HargaKita.id - Platform Pemantau Harga Bahan Pokok Indonesia" />
+    <meta property="og:description" content="Cek harga sembako hari ini di kotamu secara real-time. Data dari 500+ pasar di seluruh Indonesia." />
+    <meta property="og:image" content="https://hargakita.id/og-image.png" />
+    <meta property="og:locale" content="id_ID" />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://hargakita.id/" />
+    <meta property="twitter:title" content="HargaKita.id - Platform Pemantau Harga Bahan Pokok Indonesia" />
+    <meta property="twitter:description" content="Cek harga sembako hari ini di kotamu secara real-time. Data dari 500+ pasar di seluruh Indonesia." />
+    <meta property="twitter:image" content="https://hargakita.id/og-image.png" />
+    
+    <!-- PWA -->
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="HargaKita" />
+    
+    <!-- Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png" />
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "HargaKita.id",
+      "url": "https://hargakita.id",
+      "description": "Platform pemantau harga bahan pokok Indonesia secara real-time",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://hargakita.id/cari?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js');
+        });
+      }
+    </script>
+  </body>
+</html>

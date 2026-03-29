@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 98%;
+    --foreground: 220 14% 10%;
+    --card: 0 0% 100%;
+    --card-foreground: 220 14% 10%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 14% 10%;
+    --primary: 142 71% 37%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 220 14% 10%;
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 9% 46%;
+    --accent: 142 76% 95%;
+    --accent-foreground: 142 71% 30%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 142 71% 37%;
+    --radius: 0.75rem;
+    
+    /* Custom HargaKita colors */
+    --hijau-utama: #16a34a;
+    --hijau-muda: #dcfce7;
+    --merah-naik: #dc2626;
+    --biru-turun: #2563eb;
+    --abu-stabil: #6b7280;
+    --teks-utama: #111827;
+    --teks-sekunder: #4b5563;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  html, body {
+    @apply overflow-x-hidden;
+    max-width: 100vw;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+}
+
+@layer components {
+  .kartu-harga {
+    @apply bg-white border border-border rounded-xl p-4 transition-shadow duration-200;
+  }
+  
+  .kartu-harga:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  }
+  
+  .badge-naik {
+    @apply bg-red-50 text-red-600 px-2 py-0.5 rounded-full text-xs font-medium;
+  }
+  
+  .badge-turun {
+    @apply bg-blue-50 text-blue-600 px-2 py-0.5 rounded-full text-xs font-medium;
+  }
+  
+  .badge-stabil {
+    @apply bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full text-xs font-medium;
+  }
+  
+  .skip-link {
+    @apply sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:bg-white focus:text-primary focus:px-4 focus:py-2 focus:rounded-lg;
+  }
+  
+  .skeleton-card {
+    @apply bg-white border border-border rounded-xl p-4;
+  }
+  
+  .animate-pulse-slow {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .focus-visible-ring {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a1a1a1;
+}
+
+/* Animation for price updates */
+@keyframes priceUpdate {
+  0% { background-color: rgba(22, 163, 74, 0.2); }
+  100% { background-color: transparent; }
+}
+
+.price-updated {
+  animation: priceUpdate 1s ease-out;
+}

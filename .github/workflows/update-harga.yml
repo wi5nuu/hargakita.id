@@ -1,0 +1,28 @@
+name: Robot Pemantau Harga 🤖
+
+on:
+  schedule:
+    # Jalan otomatis setiap jam 04:00 Pagi WIB (21:00 UTC)
+    - cron: '0 21 * * *'
+  workflow_dispatch: # Tombol manual jalan
+
+jobs:
+  sync_data:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Eksekusi Robot Sinkronisasi Harga
+        env:
+          APPWRITE_ENDPOINT: ${{ secrets.APPWRITE_ENDPOINT }}
+          APPWRITE_PROJECT_ID: ${{ secrets.APPWRITE_PROJECT_ID }}
+          APPWRITE_DATABASE_ID: ${{ secrets.APPWRITE_DATABASE_ID }}
+          APPWRITE_COLLECTION_ID: ${{ secrets.APPWRITE_COLLECTION_ID }}
+          APPWRITE_API_KEY: ${{ secrets.APPWRITE_API_KEY }}
+        run: node scripts/sync-harga.mjs
