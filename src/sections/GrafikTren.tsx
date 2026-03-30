@@ -32,6 +32,7 @@ type PeriodType = 7 | 30 | 90;
 const periodLabels: Record<PeriodType, string> = {
   7: '7 Hari',
   30: '30 Hari',
+  90: '90 Hari',
 };
 
 export function GrafikTren() {
@@ -51,10 +52,6 @@ export function GrafikTren() {
     'bawang-merah',
     'bawang-putih',
   ].includes(k.id));
-
-  const selectedNames = selectedKomoditas
-    .map((id) => komoditasList.find((k) => k.id === id)?.nama)
-    .filter(Boolean);
 
   const chartOptions = {
     responsive: true,
