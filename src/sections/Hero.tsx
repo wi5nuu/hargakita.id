@@ -28,9 +28,9 @@ export function Hero() {
   };
 
   return (
-    <section className="relative bg-gradient-to-br from-primary/5 via-white to-primary/5 py-12 lg:py-16">
-      <div className="container mx-auto px-4">
-        <div className="max-w-4xl mx-auto text-center">
+    <section className="relative bg-gradient-to-br from-primary/5 via-white to-primary/5 h-[calc(100vh-4rem)] min-h-[calc(100vh-4rem)] lg:h-[calc(100vh-5rem)] lg:min-h-[calc(100vh-5rem)] pt-10 pb-8 lg:pt-16 lg:pb-14">
+      <div className="container mx-auto px-4 flex h-full items-start justify-center">
+        <div className="max-w-4xl mx-auto text-center mt-8 md:mt-10">
           {/* Badges */}
           <div className="flex flex-wrap justify-center gap-2 mb-6">
             <Badge variant="secondary" className="bg-green-100 text-green-700 hover:bg-green-100">
@@ -59,7 +59,7 @@ export function Hero() {
           </p>
 
           {/* Search Box */}
-          <div className="max-w-xl mx-auto mb-6">
+          <div className="max-w-xl mx-auto mb-6 px-2 sm:px-0">
             <div className="relative">
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
               <Input
@@ -71,7 +71,7 @@ export function Hero() {
                   setShowCityDropdown(e.target.value.length > 0);
                 }}
                 onFocus={() => setShowCityDropdown(searchQuery.length > 0)}
-                className="pl-12 pr-4 py-6 text-lg bg-white border-2 border-gray-200 focus:border-primary rounded-xl shadow-lg"
+                className="pl-12 pr-4 py-5 text-base bg-white border-2 border-gray-200 focus:border-primary rounded-2xl shadow-lg"
               />
               
               {/* City Dropdown */}
@@ -96,23 +96,23 @@ export function Hero() {
           </div>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+          <div className="flex flex-wrap items-center justify-center gap-2">
             <Button
-              size="lg"
-              className="bg-primary hover:bg-primary/90 text-white px-8"
+              size="sm"
+              className="bg-primary hover:bg-primary/90 text-white px-4 py-3"
               onClick={detectLocation}
               disabled={locLoading}
             >
-              <MapPin className="w-5 h-5 mr-2" />
+              <MapPin className="w-4 h-4 mr-2" />
               {locLoading ? 'Mendeteksi...' : city ? `Harga di ${city}` : 'Pilih Kotamu'}
             </Button>
             <Link to="/harga">
               <Button
-                size="lg"
+                size="sm"
                 variant="outline"
-                className="border-2 px-8"
+                className="border-2 px-4 py-3"
               >
-                <TrendingUp className="w-5 h-5 mr-2" />
+                <TrendingUp className="w-4 h-4 mr-2" />
                 Lihat Semua Harga
               </Button>
             </Link>

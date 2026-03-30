@@ -23,11 +23,11 @@ function formatRupiah(harga: number): string {
 
 function LaporanCard({ laporan }: { laporan: any }) {
   return (
-    <div className="bg-white border border-gray-200 rounded-xl p-4 hover:shadow-md transition-shadow">
-      <div className="flex items-start justify-between mb-3">
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
-            <span className="text-lg">
+    <div className="bg-white border border-gray-200 rounded-2xl p-3 sm:p-4 hover:shadow-md transition-shadow">
+      <div className="flex items-start justify-between gap-3 mb-2">
+        <div className="flex items-start gap-3 min-w-0">
+          <div className="w-9 h-9 bg-primary/10 rounded-lg flex items-center justify-center shrink-0">
+            <span className="text-base">
               {laporan.komoditas.includes('Beras') ? '🌾' :
                laporan.komoditas.includes('Minyak') ? '🫙' :
                laporan.komoditas.includes('Cabai') ? '🌶️' :
@@ -35,18 +35,17 @@ function LaporanCard({ laporan }: { laporan: any }) {
                laporan.komoditas.includes('Bawang') ? '🧅' : '🛒'}
             </span>
           </div>
-          <div>
-            <h4 className="font-medium text-gray-900">{laporan.komoditas}</h4>
-            <div className="flex items-center gap-2 text-sm text-gray-500">
+          <div className="min-w-0">
+            <h4 className="font-medium text-gray-900 text-sm truncate">{laporan.komoditas}</h4>
+            <div className="flex flex-wrap items-center gap-1 text-[11px] text-gray-500">
               <MapPin className="w-3 h-3" />
-              {laporan.kota}
-              {laporan.pasar && ` • ${laporan.pasar}`}
+              <span className="truncate">{laporan.kota}{laporan.pasar ? ` • ${laporan.pasar}` : ''}</span>
             </div>
           </div>
         </div>
         <Badge 
           variant={laporan.status === 'terverifikasi' ? 'default' : 'secondary'}
-          className={laporan.status === 'terverifikasi' ? 'bg-green-100 text-green-700' : ''}
+          className={`text-xs py-1 px-2 rounded-full ${laporan.status === 'terverifikasi' ? 'bg-green-100 text-green-700' : ''}`}
         >
           {laporan.status === 'terverifikasi' ? (
             <><CheckCircle2 className="w-3 h-3 mr-1" /> Terverifikasi</>
@@ -56,19 +55,19 @@ function LaporanCard({ laporan }: { laporan: any }) {
         </Badge>
       </div>
 
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between gap-3">
         <div>
-          <div className="text-xl font-bold text-gray-900">
+          <div className="text-lg sm:text-xl font-semibold text-gray-900">
             {formatRupiah(laporan.harga)}
           </div>
-          <div className="text-xs text-gray-500">
+          <div className="text-[11px] text-gray-500">
             per {laporan.satuan}
           </div>
         </div>
-        <div className="text-right">
-          <div className="flex items-center gap-1 text-sm text-gray-500">
+        <div className="text-right min-w-[80px]">
+          <div className="flex items-center gap-1 text-[11px] text-gray-500 justify-end">
             <Clock className="w-3 h-3" />
-            {laporan.waktuLapor}
+            <span>{laporan.waktuLapor}</span>
           </div>
         </div>
       </div>
@@ -78,18 +77,18 @@ function LaporanCard({ laporan }: { laporan: any }) {
 
 function SkeletonLaporan() {
   return (
-    <div className="bg-white border border-gray-200 rounded-xl p-4">
-      <div className="flex items-start gap-3 mb-3">
-        <Skeleton className="w-10 h-10 rounded-lg" />
-        <div className="flex-1">
-          <Skeleton className="h-4 w-32 mb-2" />
-          <Skeleton className="h-3 w-24" />
+    <div className="bg-white border border-gray-200 rounded-2xl p-3">
+      <div className="flex items-start gap-3 mb-2">
+        <Skeleton className="w-9 h-9 rounded-lg" />
+        <div className="flex-1 min-w-0">
+          <Skeleton className="h-4 w-28 mb-2" />
+          <Skeleton className="h-3 w-20" />
         </div>
-        <Skeleton className="h-5 w-20" />
+        <Skeleton className="h-5 w-16" />
       </div>
-      <div className="flex justify-between">
-        <Skeleton className="h-6 w-24" />
-        <Skeleton className="h-4 w-16" />
+      <div className="flex justify-between gap-3">
+        <Skeleton className="h-5 w-20" />
+        <Skeleton className="h-4 w-14" />
       </div>
     </div>
   );
@@ -125,7 +124,7 @@ export function LaporanWargaSection() {
         </div>
 
         {/* Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
           {loading ? (
             Array.from({ length: 6 }).map((_, i) => (
               <SkeletonLaporan key={i} />

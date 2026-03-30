@@ -22,10 +22,21 @@ function getCategoryColor(category: string): string {
 function BeritaCard({ berita, featured = false }: { berita: any; featured?: boolean }) {
   if (featured) {
     return (
-      <Link to={`/berita/${berita.id}`}>
+      <Link to={`/berita/${berita.id}`} className="block w-full">
         <div className="group bg-white border border-gray-200 rounded-2xl overflow-hidden hover:shadow-lg transition-shadow h-full">
-          <div className="aspect-video bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center">
-            <Newspaper className="w-16 h-16 text-primary/40" />
+          <div className="relative aspect-[21/9] min-h-[180px] overflow-hidden bg-gray-100">
+            {berita.gambar ? (
+              <img
+                src={berita.gambar}
+                alt={berita.judul}
+                loading="lazy"
+                className="w-full h-full object-cover"
+              />
+            ) : (
+              <div className="flex items-center justify-center h-full bg-gradient-to-br from-primary/20 to-primary/5">
+                <Newspaper className="w-16 h-16 text-primary/40" />
+              </div>
+            )}
           </div>
           <div className="p-6">
             <div className="flex items-center gap-2 mb-3">
@@ -59,10 +70,20 @@ function BeritaCard({ berita, featured = false }: { berita: any; featured?: bool
   }
 
   return (
-    <Link to={`/berita/${berita.id}`}>
+    <Link to={`/berita/${berita.id}`} className="block w-full">
       <div className="group flex gap-4 p-4 bg-white border border-gray-200 rounded-xl hover:shadow-md transition-shadow">
-        <div className="w-24 h-24 bg-gradient-to-br from-primary/20 to-primary/5 rounded-lg flex items-center justify-center flex-shrink-0">
-          <Newspaper className="w-8 h-8 text-primary/40" />
+        <div className="w-24 h-24 rounded-lg overflow-hidden flex-shrink-0 bg-gray-100">
+          {berita.gambar ? (
+            <img
+              src={berita.gambar}
+              alt={berita.judul}
+              className="w-full h-full object-cover"
+            />
+          ) : (
+            <div className="flex items-center justify-center h-full bg-gradient-to-br from-primary/20 to-primary/5">
+              <Newspaper className="w-8 h-8 text-primary/40" />
+            </div>
+          )}
         </div>
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 mb-2">
@@ -119,12 +140,12 @@ export function BeritaSection() {
         </div>
 
         {/* Content Grid */}
-        <div className="grid lg:grid-cols-2 gap-6">
+        <div className="grid lg:grid-cols-2 gap-4">
           {/* Featured Article */}
           <BeritaCard berita={featuredBerita} featured />
 
           {/* Other Articles */}
-          <div className="space-y-4">
+          <div className="space-y-3">
             {otherBerita.map((berita) => (
               <BeritaCard key={berita.id} berita={berita} />
             ))}

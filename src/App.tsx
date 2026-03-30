@@ -18,6 +18,7 @@ import { KotaPage } from '@/pages/KotaPage';
 import { KotaDetail } from '@/pages/KotaDetail';
 import { LaporPage } from '@/pages/LaporPage';
 import { BeritaPage } from '@/pages/BeritaPage';
+import { BeritaDetail } from '@/pages/BeritaDetail';
 import { TentangPage } from '@/pages/TentangPage';
 import { FAQPage } from '@/pages/FAQPage';
 import { PanduanPage } from '@/pages/PanduanPage';
@@ -59,6 +60,7 @@ function App() {
           <Route path="/kota" element={<KotaPage />} />
           <Route path="/kota/:id" element={<KotaDetail />} />
           <Route path="/lapor" element={<LaporPage />} />
+          <Route path="/berita/:id" element={<BeritaDetail />} />
           <Route path="/berita" element={<BeritaPage />} />
           <Route path="/tentang" element={<TentangPage />} />
           <Route path="/faq" element={<FAQPage />} />

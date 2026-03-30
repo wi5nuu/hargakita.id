@@ -46,27 +46,38 @@ function KomoditasCard({ komoditas }: { komoditas: Komoditas }) {
     }
   };
 
+  const getPriceTextClass = () => {
+    switch (komoditas.tren) {
+      case 'naik':
+        return 'text-emerald-600';
+      case 'turun':
+        return 'text-red-600';
+      default:
+        return 'text-gray-600';
+    }
+  };
+
   return (
     <Link to={`/harga/${komoditas.id}`}>
-      <div className="kartu-harga group cursor-pointer h-full p-4 lg:p-5">
-        <div className="mb-4">
-          <h3 className="font-bold text-gray-900 group-hover:text-primary transition-colors text-lg">
+      <div className="kartu-harga group cursor-pointer h-full p-1.5 sm:p-2 lg:p-3">
+        <div className="mb-1.5">
+          <h3 className="font-semibold text-gray-900 group-hover:text-primary transition-colors text-sm">
             {komoditas.nama}
           </h3>
-          <span className="text-xs text-gray-500 uppercase tracking-wider">per {komoditas.satuan}</span>
+          <span className="text-[10px] text-gray-500 uppercase tracking-[0.12em]">per {komoditas.satuan}</span>
         </div>
 
-        <div className="flex items-end justify-between">
+        <div className="flex items-start justify-between gap-1">
           <div>
-            <div className="text-2xl font-bold text-gray-900">
+            <div className={`text-base sm:text-lg font-semibold ${getPriceTextClass()}`}>
               {formatRupiah(komoditas.harga)}
             </div>
-            <div className="text-xs text-gray-500 mt-1">
+            <div className="text-[10px] text-gray-500 mt-0.5">
               Sebelumnya {formatRupiah(komoditas.hargaSebelumnya)}
             </div>
           </div>
 
-          <div className={`flex items-center gap-1 ${getTrendClass()}`}>
+          <div className={`flex items-center gap-1 text-[10px] sm:text-xs ${getTrendClass()}`}>
             {getTrendIcon()}
             <span className="font-medium">
               {komoditas.perubahanPersen > 0 ? '+' : ''}{komoditas.perubahanPersen.toFixed(2)}%
@@ -113,10 +124,10 @@ export function HargaHariIni() {
   ];
 
   return (
-    <section id="harga-hari-ini" className="py-12 md:py-16 bg-white">
-      <div className="container mx-auto px-4">
+    <section id="harga-hari-ini" className="py-8 md:py-10 bg-white">
+      <div className="container mx-auto px-3 sm:px-4">
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-4">
           <div>
             <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
               Harga Hari Ini
@@ -127,9 +138,9 @@ export function HargaHariIni() {
           </div>
 
           {/* Filter */}
-          <div className="flex items-center gap-2">
-            <Filter className="w-4 h-4 text-gray-400" />
-            <div className="flex gap-1">
+          <div className="flex flex-wrap items-center gap-1 text-xs sm:text-sm">
+            <Filter className="w-3.5 h-3.5 text-gray-400" />
+            <div className="flex flex-wrap gap-1">
               {filters.map((f) => (
                 <Button
                   key={f.value}
@@ -146,7 +157,7 @@ export function HargaHariIni() {
         </div>
 
         {/* Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-1 sm:gap-2">
           {loading ? (
             // Skeleton loading
             Array.from({ length: 8 }).map((_, i) => (
@@ -160,7 +171,7 @@ export function HargaHariIni() {
         </div>
 
         {/* CTA */}
-        <div className="mt-8 text-center">
+        <div className="mt-4 text-center">
           <Link to="/harga">
             <Button variant="outline" className="gap-2">
               Lihat Semua Komoditas

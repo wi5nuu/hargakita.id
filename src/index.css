@@ -60,7 +60,7 @@
 
 @layer components {
   .kartu-harga {
-    @apply bg-white border border-border rounded-xl p-4 transition-shadow duration-200;
+    @apply bg-white border border-border rounded-xl transition-shadow duration-200;
   }
   
   .kartu-harga:hover {
@@ -68,11 +68,11 @@
   }
   
   .badge-naik {
-    @apply bg-red-50 text-red-600 px-2 py-0.5 rounded-full text-xs font-medium;
+    @apply bg-emerald-50 text-emerald-600 px-2 py-0.5 rounded-full text-xs font-medium;
   }
   
   .badge-turun {
-    @apply bg-blue-50 text-blue-600 px-2 py-0.5 rounded-full text-xs font-medium;
+    @apply bg-red-50 text-red-600 px-2 py-0.5 rounded-full text-xs font-medium;
   }
   
   .badge-stabil {
@@ -121,7 +121,13 @@
   background: #a1a1a1;
 }
 
-/* Animation for price updates */
+/* Animation for price updates */.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
 @keyframes priceUpdate {
   0% { background-color: rgba(22, 163, 74, 0.2); }
   100% { background-color: transparent; }

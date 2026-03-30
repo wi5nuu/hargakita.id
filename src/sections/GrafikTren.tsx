@@ -32,18 +32,29 @@ type PeriodType = 7 | 30 | 90;
 const periodLabels: Record<PeriodType, string> = {
   7: '7 Hari',
   30: '30 Hari',
-  90: '3 Bulan',
 };
 
 export function GrafikTren() {
   const [period, setPeriod] = useState<PeriodType>(30);
   const [selectedKomoditas, setSelectedKomoditas] = useState<string[]>([
     'beras-premium',
-    'minyak-goreng',
-    'cabai-merah'
+    'beras-medium',
+    'minyak-goreng'
   ]);
+  const [showKomoditasMenu, setShowKomoditasMenu] = useState(false);
 
-  const mainKomoditas = komoditasList.slice(0, 6);
+  const komoditasOptions = komoditasList.filter((k) => [
+    'beras-premium',
+    'beras-medium',
+    'minyak-goreng',
+    'gula-pasir',
+    'bawang-merah',
+    'bawang-putih',
+  ].includes(k.id));
+
+  const selectedNames = selectedKomoditas
+    .map((id) => komoditasList.find((k) => k.id === id)?.nama)
+    .filter(Boolean);
 
   const chartOptions = {
     responsive: true,
@@ -181,39 +192,54 @@ export function GrafikTren() {
             </p>
           </div>
 
-          {/* Period Selector */}
-          <div className="flex items-center gap-2">
-            <Calendar className="w-4 h-4 text-gray-400" />
-            {(Object.keys(periodLabels) as unknown as PeriodType[]).map((p) => (
-              <Button
-                key={p}
-                variant={period === p ? 'default' : 'outline'}
-                size="sm"
-                onClick={() => setPeriod(p)}
-                className={period === p ? 'bg-primary' : ''}
-              >
-                {periodLabels[p]}
-              </Button>
-            ))}
-          </div>
-        </div>
+          {/* Period & Komoditas Filter */}
+          <div className="flex items-center gap-2 flex-nowrap pb-1">
+            <div className="flex items-center gap-2 whitespace-nowrap flex-shrink-0">
+              <Calendar className="w-4 h-4 text-gray-400" />
+              {(Object.keys(periodLabels) as unknown as PeriodType[]).map((p) => (
+                <Button
+                  key={p}
+                  variant={period === p ? 'default' : 'outline'}
+                  size="sm"
+                  onClick={() => setPeriod(p)}
+                  className={`${period === p ? 'bg-primary' : ''} flex-shrink-0`}
+                >
+                  {periodLabels[p]}
+                </Button>
+              ))}
+            </div>
 
-        {/* Komoditas Selector */}
-        <div className="flex flex-wrap gap-2 mb-6">
-          {mainKomoditas.map((k) => (
-            <button
-              key={k.id}
-              onClick={() => toggleKomoditas(k.id)}
-              className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
-                selectedKomoditas.includes(k.id)
-                  ? 'bg-primary text-white'
-                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-              }`}
-            >
-              <span>{k.icon}</span>
-              {k.nama}
-            </button>
-          ))}
+            <div className="relative inline-block flex-shrink-0">
+              <button
+                type="button"
+                onClick={() => setShowKomoditasMenu((prev) => !prev)}
+                className="inline-flex items-center justify-between gap-2 px-4 py-2 rounded-lg border border-gray-200 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 flex-shrink-0"
+              >
+                <span>Filter Komoditas</span>
+                <span className="text-xs text-gray-500">▾</span>
+              </button>
+
+              {showKomoditasMenu && (
+                <div className="absolute left-0 top-full mt-2 w-[220px] rounded-2xl border border-gray-200 bg-white shadow-lg p-2 z-20">
+                  {komoditasOptions.map((k) => (
+                    <button
+                      key={k.id}
+                      type="button"
+                      onClick={() => toggleKomoditas(k.id)}
+                      className={`w-full flex items-center gap-2 px-3 py-2 rounded-lg text-left text-sm transition-colors ${
+                        selectedKomoditas.includes(k.id)
+                          ? 'bg-primary text-white'
+                          : 'bg-gray-50 text-gray-700 hover:bg-gray-100'
+                      }`}
+                    >
+                      <span>{k.icon}</span>
+                      {k.nama}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
         </div>
 
         {/* Chart */}
@@ -224,21 +250,20 @@ export function GrafikTren() {
         </div>
 
         {/* Stats Summary */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
-          {selectedKomoditas.slice(0, 3).map((id) => {
+        <div className="flex gap-4 mt-6 overflow-x-auto pb-2 no-scrollbar">
+          {selectedKomoditas.map((id) => {
             const k = komoditasList.find(item => item.id === id);
             if (!k) return null;
             
             return (
-              <div key={id} className="bg-gray-50 rounded-xl p-4">
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="text-xl">{k.icon}</span>
-                  <span className="font-medium text-gray-900">{k.nama}</span>
+              <div key={id} className="min-w-[220px] bg-gray-50 rounded-xl p-3">
+                <div className="font-medium text-gray-900 text-sm mb-1">
+                  {k.nama}
                 </div>
-                <div className="text-2xl font-bold text-gray-900">
+                <div className="text-xl font-bold text-gray-900">
                   Rp {k.harga.toLocaleString('id-ID')}
                 </div>
-                <div className={`text-sm ${
+                <div className={`text-xs ${
                   k.tren === 'naik' ? 'text-red-500' :
                   k.tren === 'turun' ? 'text-blue-500' : 'text-gray-500'
                 }`}>

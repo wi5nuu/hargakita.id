@@ -65,6 +65,7 @@ export const beritaList: Berita[] = [
     judul: 'Harga Cabai Mulai Turun, Ini Penyebabnya',
     ringkasan: 'Harga cabai merah dan rawit mengalami penurunan signifikan di berbagai pasar tradisional.',
     konten: 'Harga cabai merah dan rawit mengalami penurunan signifikan di berbagai pasar tradisional. Penurunan ini disebabkan oleh panen raya di berbagai daerah sentra produksi.',
+    gambar: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80',
     tanggal: '2025-01-15',
     kategori: 'Analisis',
     penulis: 'Tim HargaKita'
@@ -74,6 +75,7 @@ export const beritaList: Berita[] = [
     judul: 'Menteri Perdagangan Pastikan Stok Beras Aman',
     ringkasan: 'Pemerintah menjamin ketersediaan beras nasional aman hingga awal tahun depan.',
     konten: 'Pemerintah menjamin ketersediaan beras nasional aman hingga awal tahun depan. Stok cadangan pemerintah dan produksi petani dinilai cukup untuk memenuhi kebutuhan masyarakat.',
+    gambar: 'https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?auto=format&fit=crop&w=1200&q=80',
     tanggal: '2025-01-14',
     kategori: 'Berita',
     penulis: 'Tim HargaKita'
@@ -83,8 +85,29 @@ export const beritaList: Berita[] = [
     judul: 'Tips Hemat Belanja Bulanan di Awal Tahun',
     ringkasan: 'Strategi cerdas untuk mengelola pengeluaran belanja kebutuhan pokok.',
     konten: 'Strategi cerdas untuk mengelola pengeluaran belanja kebutuhan pokok. Dengan perencanaan yang tepat, Anda bisa menghemat hingga 20% dari anggaran belanja bulanan.',
+    gambar: 'https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=1200&q=80',
     tanggal: '2025-01-13',
-    kategori: 'Edukasi',
+    kategori: 'Analisis',
+    penulis: 'Tim HargaKita'
+  },
+  {
+    id: '4',
+    judul: 'Inflasi Bahan Pokok Terkendali, Harga Beras Stabil',
+    ringkasan: 'Harga beras premium dan medium stabil setelah pasokan meningkat di Jawa dan Sumatera.',
+    konten: 'Pasokan beras dari sentra produksi seperti Karawang dan Indramayu meningkat, sehingga harga beras premium dan medium di pasar tradisional tetap stabil. Langkah ini diharapkan menjamin ketersediaan pangan menjelang bulan ramadan.',
+    gambar: 'https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=1200&q=80',
+    tanggal: '2025-01-12',
+    kategori: 'Berita',
+    penulis: 'Tim HargaKita'
+  },
+  {
+    id: '5',
+    judul: 'Analisis: Permintaan Minyak Goreng Naik Jelang Libur Nasional',
+    ringkasan: 'Permintaan minyak goreng diprediksi naik sementara distribusi mulai menyesuaikan stok.',
+    konten: 'Menjelang libur nasional, permintaan minyak goreng diprediksi meningkat tajam di kota-kota besar. Pedagang dan distributor mulai menyesuaikan stok untuk menjaga ketersediaan dan menahan lonjakan harga.',
+    gambar: 'https://images.unsplash.com/photo-1589927986089-35812386f3ef?auto=format&fit=crop&w=1200&q=80',
+    tanggal: '2025-01-11',
+    kategori: 'Analisis',
     penulis: 'Tim HargaKita'
   },
 ];
